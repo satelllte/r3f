@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "serve out",
     "test:types": "tsc",
     "test:lint": "next lint --max-warnings=0 --format=compact",
     "test:format": "prettier . --check",
@@ -31,6 +31,7 @@
     "postcss": "^8",
     "prettier": "3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.11",
+    "serve": "^14.2.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
