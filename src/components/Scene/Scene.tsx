@@ -50,18 +50,14 @@ function SceneBody() {
 function Cube({rotationDisabled}: {readonly rotationDisabled: boolean}) {
   const speed = 1.25;
   const transitionSpeed = 2.5;
+  const targetSpeed = rotationDisabled ? 0 : speed;
   const currentSpeedRef = useRef<number>(rotationDisabled ? 0 : speed);
-  const targetSpeedRef = useRef<number>(rotationDisabled ? 0 : speed);
   const meshRef = useRef<React.ElementRef<'mesh'>>(null);
-
-  useEffect(() => {
-    targetSpeedRef.current = rotationDisabled ? 0 : speed;
-  }, [rotationDisabled]);
 
   useFrame((_, deltaTime) => {
     currentSpeedRef.current = lerp(
       currentSpeedRef.current,
-      targetSpeedRef.current,
+      targetSpeed,
       deltaTime * transitionSpeed,
     );
   });
