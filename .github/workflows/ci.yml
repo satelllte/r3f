@@ -36,3 +36,5 @@ jobs:
         with:
           name: web
           path: ./${{env.BUILD_DIRECTORY}}
+      - name: Test (visual regression)
+        uses: lost-pixel/lost-pixel@v3.9.0

@@ -9,6 +9,7 @@
     "test:types": "tsc",
     "test:lint": "next lint --max-warnings=0 --format=compact",
     "test:format": "prettier . --check",
+    "test:visual": "lost-pixel run",
     "format": "prettier . --write"
   },
   "dependencies": {
@@ -32,6 +33,8 @@
     "eslint-config-xo-react": "^0.27.0",
     "eslint-config-xo-typescript": "^1.0.1",
     "eslint-plugin-tailwindcss": "^3.13.1",
+    "lost-pixel": "^3.9.0",
+    "playwright": "^1.40.1",
     "postcss": "^8",
     "prettier": "3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.11",
