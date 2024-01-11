@@ -9,3 +9,9 @@ extends:
 
 rules:
   tailwindcss/classnames-order: 'off' # Handled by "prettier-plugin-tailwindcss"
+
+overrides:
+  # Overrides for R3F components
+  - files: './src/components/Scene/*.ts?(x)'
+    rules:
+      react/no-unknown-property: 'off'

@@ -7,6 +7,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true, // Checking in "test:types" script instead
   },
+  transpilePackages: ['three'],
 };
 
 module.exports = nextConfig;
