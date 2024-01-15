@@ -9,6 +9,7 @@ import fragmentShader from './shaders/fragment.glsl';
 export function Scene() {
   return (
     <Canvas>
+      <axesHelper />
       <SceneBody />
     </Canvas>
   );
@@ -44,7 +45,7 @@ function SceneBody() {
         }}
       />
       <ambientLight />
-      <Cube rotationDisabled={inOrbitControlsInteraction} />
+      <Cube rotationDisabled /* ={inOrbitControlsInteraction} */ />
     </>
   );
 }
@@ -76,13 +77,31 @@ function Cube({rotationDisabled}: {readonly rotationDisabled: boolean}) {
     mesh.rotation.y += deltaTime * currentSpeed;
   });
 
+  const shaderMaterialRef = useRef<React.ElementRef<'shaderMaterial'>>(null);
+  useEffect(() => {
+    console.debug('shaderMaterialRef.current: ', shaderMaterialRef.current);
+  }, []);
+
+  useFrame(({clock}) => {
+    const shaderMaterial = shaderMaterialRef.current;
+    if (!shaderMaterial) return;
+
+    shaderMaterial.uniforms.uTime.value = clock.getElapsedTime();
+  });
+
   return (
-    <mesh ref={meshRef} rotation={[0, 45, 0]}>
-      <boxGeometry />
+    <mesh ref={meshRef} rotation={[0, 0, 0] /* [0, 45, 0] */}>
+      <boxGeometry args={[1, 1, 1, 4, 4, 4]} />
       <shaderMaterial
+        ref={shaderMaterialRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
+        uniforms={uniforms}
       />
     </mesh>
   );
 }
+
+const uniforms = {
+  uTime: {value: 0},
+};
