@@ -3,6 +3,8 @@ import {useEffect, useRef, useState} from 'react';
 import {Canvas, useFrame} from '@react-three/fiber';
 import {Environment, OrbitControls, PerspectiveCamera} from '@react-three/drei';
 import {lerp} from 'three/src/math/MathUtils.js';
+import vertexShader from './shaders/vertex.glsl';
+import fragmentShader from './shaders/fragment.glsl';
 
 export function Scene() {
   return (
@@ -77,7 +79,10 @@ function Cube({rotationDisabled}: {readonly rotationDisabled: boolean}) {
   return (
     <mesh ref={meshRef} rotation={[0, 45, 0]}>
       <boxGeometry />
-      <meshStandardMaterial color='#1169b7' metalness={0.8} roughness={0.25} />
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+      />
     </mesh>
   );
 }
