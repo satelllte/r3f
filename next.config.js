@@ -9,8 +9,7 @@ const nextConfig = {
   },
   transpilePackages: ['three'],
   webpack: (config) => {
-    config.module.rules.push({test: /\.vert/, type: 'asset/source'});
-    config.module.rules.push({test: /\.frag/, type: 'asset/source'});
+    config.module.rules.push({test: /\.glsl/, type: 'asset/source'});
     return config;
   },
 };

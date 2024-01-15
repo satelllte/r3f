@@ -1,8 +1,4 @@
-declare module '*.vert' {
-  const shaderCode: string;
-  export default shaderCode;
-}
-declare module '*.frag' {
+declare module '*.glsl' {
   const shaderCode: string;
   export default shaderCode;
 }
