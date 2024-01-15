@@ -3,8 +3,8 @@ import {useEffect, useRef, useState} from 'react';
 import {Canvas, useFrame} from '@react-three/fiber';
 import {Environment, OrbitControls, PerspectiveCamera} from '@react-three/drei';
 import {lerp} from 'three/src/math/MathUtils.js';
-import vertexShader from './shaders/vertex.glsl';
-import fragmentShader from './shaders/fragment.glsl';
+import vertexShader from './shaders/cube.vert';
+import fragmentShader from './shaders/cube.frag';
 
 export function Scene() {
   return (
