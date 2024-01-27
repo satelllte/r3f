@@ -3,12 +3,15 @@ import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
 
 export function Icosahedron() {
-  const {detail} = useControls({
+  const {detail, wireframe} = useControls({
     detail: {
       value: 2,
       min: 1,
       max: 20,
       step: 1,
+    },
+    wireframe: {
+      value: false,
     },
   });
   const detailRounded = Math.round(detail);
@@ -17,6 +20,8 @@ export function Icosahedron() {
     <mesh>
       <icosahedronGeometry args={[1, detailRounded]} />
       <shaderMaterial
+        wireframe={wireframe}
+        wireframeLinewidth={4}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
       />
