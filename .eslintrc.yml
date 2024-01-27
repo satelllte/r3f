@@ -12,6 +12,6 @@ rules:
 
 overrides:
   # Overrides for R3F components
-  - files: './src/components/Scene/*.ts?(x)'
+  - files: './src/components/Scene/**/*.ts?(x)'
     rules:
       react/no-unknown-property: 'off'
