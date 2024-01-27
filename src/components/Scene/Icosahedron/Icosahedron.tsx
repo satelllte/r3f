@@ -1,11 +1,12 @@
 import {useEffect, useRef} from 'react';
+import {useFrame} from '@react-three/fiber';
 import {useControls} from 'leva';
 import {hexToVec3} from '@/utils/colors';
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
 
 export function Icosahedron() {
-  const {detail, wireframe, color1, color2} = useControls({
+  const {detail, wireframe, pulseSpeed, color1, color2} = useControls({
     detail: {
       value: 2,
       min: 1,
@@ -14,6 +15,12 @@ export function Icosahedron() {
     },
     wireframe: {
       value: false,
+    },
+    pulseSpeed: {
+      value: pulseSpeedDefault,
+      min: 0.5,
+      max: 30.0,
+      step: 0.1,
     },
     color1: {
       value: color1Default,
@@ -30,9 +37,17 @@ export function Icosahedron() {
     const shaderMaterial = shaderMaterialRef.current;
     if (!shaderMaterial) return;
 
+    shaderMaterial.uniforms.uPulseSpeed.value = pulseSpeed;
     shaderMaterial.uniforms.uColor1.value = hexToVec3(color1);
     shaderMaterial.uniforms.uColor2.value = hexToVec3(color2);
-  }, [color1, color2]);
+  }, [pulseSpeed, color1, color2]);
+
+  useFrame(({clock}) => {
+    const shaderMaterial = shaderMaterialRef.current;
+    if (!shaderMaterial) return;
+
+    shaderMaterial.uniforms.uTime.value = clock.getElapsedTime();
+  });
 
   return (
     <mesh>
@@ -51,8 +66,11 @@ export function Icosahedron() {
 
 const color1Default = '#00bb99';
 const color2Default = '#00001f';
+const pulseSpeedDefault = 4.0;
 
 const uniforms = {
+  uTime: {value: 0},
+  uPulseSpeed: {value: pulseSpeedDefault},
   uColor1: {value: hexToVec3(color1Default)},
   uColor2: {value: hexToVec3(color2Default)},
 };
