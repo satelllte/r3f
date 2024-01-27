@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  ci:
+  build:
     env:
       BUILD_DIRECTORY: out
     timeout-minutes: 5
