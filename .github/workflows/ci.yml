@@ -21,17 +21,19 @@ jobs:
         uses: oven-sh/setup-bun@v1
       - name: Bun version
         run: bun --version
-      - name: Install ClangFormat
+      - name: Set up ClangFormat
         run: |
           sudo apt update
           sudo apt install -y clang-format
+      - name: ClangFormat version
+        run: clang-format --version
       - name: Install Bun dependencies
         run: bun install --frozen-lockfile
       - name: Test (types)
         run: bun run test:types
       - name: Test (lint)
         run: bun run test:lint
-      - name: Test (TS formatting)
+      - name: Test (formatting)
         run: bun run test:format
       - name: Test (GLSL formatting)
         run: ./glsl_format_test.sh
