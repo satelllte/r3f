@@ -1,7 +1,7 @@
 'use client';
 import {useEffect, useRef} from 'react';
 import {Canvas} from '@react-three/fiber';
-import {OrbitControls, PerspectiveCamera} from '@react-three/drei';
+import {OrbitControls, PerspectiveCamera, Stats} from '@react-three/drei';
 import {Icosahedron} from './Icosahedron';
 
 export function Scene() {
@@ -24,6 +24,7 @@ function SceneBody() {
 
   return (
     <>
+      <Stats />
       <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 2.5, 4]} />
       <OrbitControls
         enablePan={false}

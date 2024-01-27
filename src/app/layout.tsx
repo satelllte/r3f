@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className='bg-black text-white'>
         <div className='absolute h-full w-full'>
           <div className='absolute h-full w-full'>
-            <h1 className='select-none p-4 py-6 text-2xl font-bold sm:p-8 sm:text-4xl'>
+            <h1 className='select-none px-4 pb-4 pt-16 text-2xl font-bold sm:px-8 sm:pt-16 sm:text-4xl'>
               r3f
             </h1>
           </div>
