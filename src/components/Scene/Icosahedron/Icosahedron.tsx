@@ -17,7 +17,6 @@ export function Icosahedron() {
     <mesh>
       <icosahedronGeometry args={[1, detailRounded]} />
       <shaderMaterial
-        wireframe
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
       />
