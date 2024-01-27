@@ -2,9 +2,8 @@ import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'r3f-lost-pixel',
-  description:
-    'Visual regression testing example with lost-pixel and react-three-fiber',
+  title: 'r3f',
+  description: 'A playground for react-three-fiber',
 };
 
 export default function RootLayout({
@@ -22,7 +21,7 @@ export default function RootLayout({
         <div className='absolute h-full w-full'>
           <div className='absolute h-full w-full'>
             <h1 className='p-4 py-6 text-2xl font-bold sm:p-8 sm:text-4xl'>
-              r3f-lost-pixel
+              r3f
             </h1>
           </div>
           <div className='absolute h-full w-full'>{children}</div>
