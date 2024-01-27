@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Node version
+        run: node -v
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
       - name: Bun version
