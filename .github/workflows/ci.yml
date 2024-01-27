@@ -36,3 +36,15 @@ jobs:
         with:
           name: web
           path: ./${{env.BUILD_DIRECTORY}}
+  glsl:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install ClangFormat
+        run: |
+          sudo apt update
+          sudo apt install -y clang-format
+      - name: Test GLSL formatting
+        run: ./glsl_format_test.sh
