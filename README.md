@@ -1,6 +1,6 @@
-# r3f-lost-pixel
+# r3f
 
-A playground for visual regression testing with [lost-pixel](https://github.com/lost-pixel/lost-pixel) + [react-three-fiber](https://github.com/pmndrs/react-three-fiber/).
+A playground for [react-three-fiber](https://github.com/pmndrs/react-three-fiber/).
 
 ## Prerequisites
 
