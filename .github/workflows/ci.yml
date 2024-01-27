@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  ci:
     env:
       BUILD_DIRECTORY: out
     timeout-minutes: 5
@@ -21,14 +21,20 @@ jobs:
         uses: oven-sh/setup-bun@v1
       - name: Bun version
         run: bun --version
-      - name: Install dependencies
+      - name: Install ClangFormat
+        run: |
+          sudo apt update
+          sudo apt install -y clang-format
+      - name: Install Bun dependencies
         run: bun install --frozen-lockfile
       - name: Test (types)
         run: bun run test:types
       - name: Test (lint)
         run: bun run test:lint
-      - name: Test (format)
+      - name: Test (TS formatting)
         run: bun run test:format
+      - name: Test (GLSL formatting)
+        run: ./glsl_format_test.sh
       - name: Build
         run: bun run build
       - name: Upload static output artifact
@@ -36,15 +42,3 @@ jobs:
         with:
           name: web
           path: ./${{env.BUILD_DIRECTORY}}
-  glsl:
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Install ClangFormat
-        run: |
-          sudo apt update
-          sudo apt install -y clang-format
-      - name: Test GLSL formatting
-        run: ./glsl_format_test.sh
