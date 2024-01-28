@@ -1,3 +1,4 @@
+'use client';
 import {useRef} from 'react';
 import {useFrame} from '@react-three/fiber';
 import vertexShader from './shaders/vertex.glsl';

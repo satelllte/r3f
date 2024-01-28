@@ -2,17 +2,19 @@
 import {useEffect, useRef} from 'react';
 import {Canvas} from '@react-three/fiber';
 import {OrbitControls, PerspectiveCamera, Stats} from '@react-three/drei';
-import {Icosahedron} from './Icosahedron';
 
-export function Scene() {
+export function Scene({children}: {readonly children: React.ReactNode}) {
   return (
     <Canvas>
-      <SceneBody />
+      <Stats />
+      <ambientLight />
+      <Camera />
+      {children}
     </Canvas>
   );
 }
 
-function SceneBody() {
+function Camera() {
   const cameraRef = useRef<React.ElementRef<typeof PerspectiveCamera>>(null);
 
   useEffect(() => {
@@ -24,7 +26,6 @@ function SceneBody() {
 
   return (
     <>
-      <Stats />
       <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 2.5, 4]} />
       <OrbitControls
         enablePan={false}
@@ -33,8 +34,6 @@ function SceneBody() {
         maxDistance={10}
         camera={cameraRef.current ?? undefined}
       />
-      <ambientLight />
-      <Icosahedron />
     </>
   );
 }
