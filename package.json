@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "serve out",
     "test:types": "tsc",
+    "test:units": "vitest",
     "test:lint": "next lint --max-warnings=0 --format=compact",
     "test:format": "prettier . --check",
     "format": "prettier . --write"
@@ -14,6 +15,7 @@
   "dependencies": {
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.13",
+    "leva": "^0.9.35",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
@@ -37,6 +39,7 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "serve": "^14.2.1",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.2.2"
   }
 }

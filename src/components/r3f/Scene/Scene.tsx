@@ -1,18 +1,20 @@
 'use client';
 import {useEffect, useRef} from 'react';
 import {Canvas} from '@react-three/fiber';
-import {Environment, OrbitControls, PerspectiveCamera} from '@react-three/drei';
-import {Cube} from './Cube';
+import {OrbitControls, PerspectiveCamera, Stats} from '@react-three/drei';
 
-export function Scene() {
+export function Scene({children}: {readonly children: React.ReactNode}) {
   return (
     <Canvas>
-      <SceneBody />
+      <Stats />
+      <ambientLight />
+      <Camera />
+      {children}
     </Canvas>
   );
 }
 
-function SceneBody() {
+function Camera() {
   const cameraRef = useRef<React.ElementRef<typeof PerspectiveCamera>>(null);
 
   useEffect(() => {
@@ -24,7 +26,6 @@ function SceneBody() {
 
   return (
     <>
-      <Environment preset='dawn' />
       <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 2.5, 4]} />
       <OrbitControls
         enablePan={false}
@@ -33,8 +34,6 @@ function SceneBody() {
         maxDistance={10}
         camera={cameraRef.current ?? undefined}
       />
-      <ambientLight />
-      <Cube />
     </>
   );
 }

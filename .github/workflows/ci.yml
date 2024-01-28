@@ -31,6 +31,8 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Test (types)
         run: bun run test:types
+      - name: Test (units)
+        run: bun run test:units
       - name: Test (lint)
         run: bun run test:lint
       - name: Test (formatting)
