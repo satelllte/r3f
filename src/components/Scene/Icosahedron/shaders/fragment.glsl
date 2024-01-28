@@ -3,7 +3,7 @@ varying vec3 vNormal;
 varying vec2 vUv;
 
 uniform float uTime;
-uniform float uPulseSpeed;
+uniform float uPulseFrequency;
 uniform vec3 uColor1;
 uniform vec3 uColor2;
 
