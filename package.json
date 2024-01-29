@@ -14,7 +14,7 @@
     "upgrade": "bunx npm-check-updates -u && bun i"
   },
   "dependencies": {
-    "@react-three/drei": "^9.96.5",
+    "@react-three/drei": "9.93.0",
     "@react-three/fiber": "^8.15.15",
     "leva": "^0.9.35",
     "next": "14.1.0",
