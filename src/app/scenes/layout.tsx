@@ -14,7 +14,7 @@ export default function SceneLayout({
 }) {
   return (
     <>
-      <div className='absolute h-full w-full'>
+      <div className='absolute size-full'>
         <Link
           className='absolute bottom-4 left-4 z-10 text-lg sm:bottom-8 sm:left-8'
           href='/'
@@ -22,7 +22,7 @@ export default function SceneLayout({
           {'<-'}
         </Link>
       </div>
-      <div className='absolute h-full w-full'>{children}</div>
+      <div className='absolute size-full'>{children}</div>
     </>
   );
 }
