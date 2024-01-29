@@ -8,6 +8,7 @@ export function Scene({children}: {readonly children: React.ReactNode}) {
     <Canvas>
       <Stats />
       <ambientLight />
+      <color attach='background' args={['#080808']} />
       <Camera />
       {children}
     </Canvas>

@@ -1,6 +1,10 @@
 'use client';
-import {DoubleSide} from 'three';
+import {useEffect, useRef} from 'react';
 import {useControls} from 'leva';
+import {DoubleSide} from 'three';
+import {hexToVec3} from '@/utils/colors';
+import vertexShader from './shaders/vertex.glsl';
+import fragmentShader from './shaders/fragment.glsl';
 
 export function Plane() {
   const {
@@ -13,7 +17,7 @@ export function Plane() {
       value: false,
     },
     color: {
-      value: '#00bb99',
+      value: colorDefault,
     },
     segmentsX: {
       value: 1,
@@ -31,15 +35,33 @@ export function Plane() {
   const segmentsX = Math.round(_segmentsX);
   const segmentsY = Math.round(_segmentsY);
 
+  const shaderMaterialRef = useRef<React.ElementRef<'shaderMaterial'>>(null);
+
+  useEffect(() => {
+    const shaderMaterial = shaderMaterialRef.current;
+    if (!shaderMaterial) return;
+
+    shaderMaterial.uniforms.uColor.value = hexToVec3(color);
+  }, [color]);
+
   return (
     <mesh>
       <planeGeometry args={[1, 1, segmentsX, segmentsY]} />
-      <meshStandardMaterial
-        side={DoubleSide}
+      <shaderMaterial
+        ref={shaderMaterialRef}
+        uniforms={uniforms}
         wireframe={wireframe}
         wireframeLinewidth={4}
-        color={color}
+        side={DoubleSide}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
       />
     </mesh>
   );
 }
+
+const colorDefault = '#00bb99';
+
+const uniforms = {
+  uColor: {value: colorDefault},
+};
