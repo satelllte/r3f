@@ -3,19 +3,25 @@ import {useEffect, useRef} from 'react';
 import {Canvas} from '@react-three/fiber';
 import {OrbitControls, PerspectiveCamera, Stats} from '@react-three/drei';
 
-export function Scene({children}: {readonly children: React.ReactNode}) {
+export function Scene({
+  children,
+  cameraFar,
+}: {
+  readonly children: React.ReactNode;
+  readonly cameraFar?: number;
+}) {
   return (
     <Canvas>
       <Stats />
       <ambientLight />
       <color attach='background' args={['#080808']} />
-      <Camera />
+      <Camera far={cameraFar} />
       {children}
     </Canvas>
   );
 }
 
-function Camera() {
+function Camera({far}: {readonly far?: number}) {
   const cameraRef = useRef<React.ElementRef<typeof PerspectiveCamera>>(null);
 
   useEffect(() => {
@@ -27,7 +33,12 @@ function Camera() {
 
   return (
     <>
-      <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 2.5, 4]} />
+      <PerspectiveCamera
+        ref={cameraRef}
+        makeDefault
+        position={[0, 2.5, 4]}
+        far={far}
+      />
       <OrbitControls
         enablePan={false}
         enableDamping={false}

@@ -35,7 +35,9 @@ export const Can = forwardRef<React.ElementRef<'group'>, CanProps>(
     return (
       <group ref={forwardedRef} scale={scale * 5.0} dispose={null} {...rest}>
         <mesh geometry={nodes.can_1.geometry} material={materials.texture} />
-        <mesh geometry={nodes.can_2.geometry} material={materials.metal} />
+        <mesh geometry={nodes.can_2.geometry} material={materials.metal}>
+          <meshPhysicalMaterial metalness={0.96} roughness={0.01} />
+        </mesh>
       </group>
     );
   },

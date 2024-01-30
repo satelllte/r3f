@@ -3,7 +3,7 @@ import {Cans} from '@/components/r3f/Cans';
 
 export default function () {
   return (
-    <Scene>
+    <Scene cameraFar={40}>
       <Cans />
     </Scene>
   );

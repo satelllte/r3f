@@ -3,6 +3,11 @@
 import {useRef} from 'react';
 import {useFrame} from '@react-three/fiber';
 import {Environment} from '@react-three/drei';
+import {
+  DepthOfField,
+  EffectComposer,
+  Vignette,
+} from '@react-three/postprocessing';
 import {randFloatSpread} from 'three/src/math/MathUtils.js';
 import {useConst} from '@/hooks/useConst';
 import {Can} from './Can';
@@ -11,8 +16,11 @@ export function Cans() {
   return (
     <>
       <Environment preset='dawn' />
-      <pointLight position={[0, 0, 0]} />
       <CansSceneBody />
+      <EffectComposer>
+        <DepthOfField focusDistance={0.2} bokehScale={4} />
+        <Vignette offset={0.01} darkness={1.1} />
+      </EffectComposer>
     </>
   );
 }
