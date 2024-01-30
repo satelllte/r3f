@@ -4,9 +4,10 @@ Command: bunx gltfjsx@6.2.16 ./public/models/can.glb --types --debug --transform
 */
 'use client';
 
-import type {Mesh, MeshStandardMaterial} from 'three';
+import {forwardRef} from 'react';
 import {useGLTF} from '@react-three/drei';
 import {type GLTF} from 'three-stdlib';
+import type {Mesh, MeshStandardMaterial} from 'three';
 
 const path = '/models/can.glb';
 
@@ -25,17 +26,19 @@ type GLTFResult = GLTF & {
 type GroupProps = React.ComponentProps<'group'>;
 type GroupPropsToExtend = Omit<GroupProps, 'dispose' | 'scale'>;
 type CanProps = GroupPropsToExtend & {
-  readonly scale?: number;
+  readonly scale?: number; // eslint-disable-line react/require-default-props
 };
 
-export function Can({scale = 1, ...rest}: CanProps) {
-  const {nodes, materials} = useGLTF(path) as GLTFResult;
-  return (
-    <group scale={scale * 5.0} dispose={null} {...rest}>
-      <mesh geometry={nodes.can_1.geometry} material={materials.texture} />
-      <mesh geometry={nodes.can_2.geometry} material={materials.metal} />
-    </group>
-  );
-}
+export const Can = forwardRef<React.ElementRef<'group'>, CanProps>(
+  ({scale = 1, ...rest}, forwardedRef) => {
+    const {nodes, materials} = useGLTF(path) as GLTFResult;
+    return (
+      <group ref={forwardedRef} scale={scale * 5.0} dispose={null} {...rest}>
+        <mesh geometry={nodes.can_1.geometry} material={materials.texture} />
+        <mesh geometry={nodes.can_2.geometry} material={materials.metal} />
+      </group>
+    );
+  },
+);
 
 useGLTF.preload(path);
