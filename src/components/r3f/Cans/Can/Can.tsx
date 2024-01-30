@@ -8,7 +8,7 @@ import type {Mesh, MeshStandardMaterial} from 'three';
 import {useGLTF} from '@react-three/drei';
 import {type GLTF} from 'three-stdlib';
 
-const path = '/models/can-transformed.glb';
+const path = '/models/can.glb';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 type GLTFResult = GLTF & {
