@@ -7,6 +7,7 @@ export default function () {
         r3f
       </h1>
       <div className='flex flex-col gap-2 px-4 sm:px-8'>
+        <Link href='/scenes/cans'>scenes/cans</Link>
         <Link href='/scenes/cube'>scenes/cube</Link>
         <Link href='/scenes/icosahedron'>scenes/icosahedron</Link>
         <Link href='/scenes/plane'>scenes/plane</Link>
