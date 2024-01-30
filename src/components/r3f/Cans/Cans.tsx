@@ -1,10 +1,13 @@
 'use client';
 
+import {Can} from './Can';
+
 export function Cans() {
   return (
-    <mesh>
-      <boxGeometry args={[1, 1, 1, 4, 4, 4]} />
-      <meshStandardMaterial wireframe />
-    </mesh>
+    <>
+      <Can position={[0, 0, 0]} />
+      <Can position={[-1.25, 0, 0]} />
+      <Can position={[1.25, 0, 0]} />
+    </>
   );
 }
