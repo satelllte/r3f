@@ -10,6 +10,9 @@ on:
 
 jobs:
   ci:
+    permissions:
+      contents: read
+      deployments: write
     env:
       BUILD_DIRECTORY: out
     timeout-minutes: 5
@@ -41,6 +44,14 @@ jobs:
         run: ./glsl_format_test.sh
       - name: Build
         run: bun run build
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: r3f-satelllte
+          directory: ./${{env.BUILD_DIRECTORY}}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload static output artifact
         uses: actions/upload-artifact@v4
         with:
