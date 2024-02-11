@@ -14,7 +14,8 @@ export function Torus() {
     tube,
     radialSegments: _radialSegments,
     tubularSegments: _tubularSegments,
-    color,
+    color1,
+    color2,
     wireframe,
     normals,
     normalsColor,
@@ -32,28 +33,31 @@ export function Torus() {
       step: 0.01,
     },
     radialSegments: {
-      value: 24,
+      value: 48,
       min: 3,
-      max: 72,
+      max: 150,
       step: 1,
     },
     tubularSegments: {
-      value: 64,
+      value: 92,
       min: 3,
-      max: 192,
+      max: 380,
       step: 1,
     },
-    color: {
-      value: colorDefault,
+    color1: {
+      value: color1Default,
+    },
+    color2: {
+      value: color2Default,
     },
     wireframe: {
-      value: true,
+      value: false,
     },
     normals: {
       value: false,
     },
     normalsColor: {
-      value: '#aa2299',
+      value: '#1e552f',
     },
   });
   const radialSegments = Math.round(_radialSegments);
@@ -76,15 +80,9 @@ export function Torus() {
     const material = materialRef.current;
     if (!material) return;
 
-    material.uniforms.uColor.value = hexToVec3(color);
-  }, [color]);
-
-  useFrame((_, deltaTime) => {
-    const mesh = meshRef.current;
-    if (!mesh) return;
-
-    mesh.rotateX(deltaTime * (Math.PI / 4.0));
-  });
+    material.uniforms.uColor1.value = hexToVec3(color1);
+    material.uniforms.uColor2.value = hexToVec3(color2);
+  }, [color1, color2]);
 
   return (
     <mesh ref={meshRef} rotation={[0, 0, Math.PI / 2.0]}>
@@ -100,9 +98,11 @@ export function Torus() {
   );
 }
 
-const colorDefault = '#7697c5';
+const color1Default = '#1f0034';
+const color2Default = '#a75491';
 
 const uniforms = {
   uTime: {value: 0.0},
-  uColor: {value: hexToVec3(colorDefault)},
+  uColor1: {value: hexToVec3(color1Default)},
+  uColor2: {value: hexToVec3(color2Default)},
 };

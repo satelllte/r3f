@@ -60,9 +60,9 @@ void main() {
     vec2 _uv = uv;
 
     float noiseMultiplier = ease((abs(_uv.x - 0.5)) * 2.0);
-    float noise = snoise(_position * (uTime + 17.25) * 0.25); 
+    float noise = snoise(_position * 2.0 + sin(uTime) * 0.5); 
     float displacement = noise * noiseMultiplier;
-    _position += _normal * 0.75 * displacement;
+    _position += _normal * 0.5 * displacement;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(_position, 1.0);
 
