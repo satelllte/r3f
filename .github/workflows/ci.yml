@@ -49,7 +49,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: r3f
+          projectName: r3f-satelllte
           directory: ./${{env.BUILD_DIRECTORY}}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload static output artifact
