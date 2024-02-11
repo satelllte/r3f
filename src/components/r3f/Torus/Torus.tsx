@@ -51,13 +51,13 @@ export function Torus() {
       value: color2Default,
     },
     wireframe: {
-      value: false,
+      value: true,
     },
     normals: {
       value: false,
     },
     normalsColor: {
-      value: '#1e552f',
+      value: '#541d1d',
     },
   });
   const radialSegments = Math.round(_radialSegments);
@@ -98,7 +98,7 @@ export function Torus() {
   );
 }
 
-const color1Default = '#1f0034';
+const color1Default = '#1d654d';
 const color2Default = '#a75491';
 
 const uniforms = {

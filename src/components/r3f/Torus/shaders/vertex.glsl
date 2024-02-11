@@ -5,8 +5,6 @@ varying float vNoiseMultiplier;
 
 uniform float uTime;
 
-float ease(float x) { return pow(2.0, 10.0 * x - 10.0); }
-
 vec3 random3(vec3 c) {
     float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
     vec3 r;
@@ -59,7 +57,7 @@ void main() {
     vec3 _normal = normal;
     vec2 _uv = uv;
 
-    float noiseMultiplier = ease((abs(_uv.x - 0.5)) * 2.0);
+    float noiseMultiplier = (abs(_uv.x - 0.5)) * 2.0;
     float noise = snoise(_position * 2.0 + sin(uTime) * 0.5); 
     float displacement = noise * noiseMultiplier;
     _position += _normal * 0.5 * displacement;
