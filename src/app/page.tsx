@@ -10,6 +10,7 @@ export default function () {
         <Link href='/scenes/cube'>scenes/cube</Link>
         <Link href='/scenes/icosahedron'>scenes/icosahedron</Link>
         <Link href='/scenes/plane'>scenes/plane</Link>
+        <Link href='/scenes/torus'>scenes/torus</Link>
       </div>
     </div>
   );
