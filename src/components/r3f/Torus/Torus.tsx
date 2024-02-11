@@ -3,12 +3,35 @@ import {useControls} from 'leva';
 import {useEffect, useRef} from 'react';
 import {useFrame} from '@react-three/fiber';
 import {useHelper} from '@react-three/drei';
+import {
+  EffectComposer,
+  Glitch,
+  Noise,
+  Vignette,
+} from '@react-three/postprocessing';
 import {VertexNormalsHelper} from 'three/examples/jsm/Addons.js';
 import {hexToVec3} from '@/utils/colors';
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
 
 export function Torus() {
+  return (
+    <>
+      <SceneBody />
+      <EffectComposer>
+        <Noise opacity={0.3} />
+        <Glitch
+          // @ts-expect-error Vector2
+          delay={[1.5, 3.5]}
+          ratio={0.9}
+        />
+        <Vignette offset={0.1} darkness={1.1} />
+      </EffectComposer>
+    </>
+  );
+}
+
+function SceneBody() {
   const {
     radius,
     tube,
@@ -98,8 +121,8 @@ export function Torus() {
   );
 }
 
-const color1Default = '#1d654d';
-const color2Default = '#a75491';
+const color1Default = '#000000';
+const color2Default = '#172738';
 
 const uniforms = {
   uTime: {value: 0.0},
