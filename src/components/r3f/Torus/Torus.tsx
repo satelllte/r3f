@@ -22,7 +22,7 @@ export function Torus() {
         <Noise opacity={0.3} />
         <Glitch
           // @ts-expect-error Vector2
-          delay={[1.5, 3.5]}
+          delay={[1.0, 2.5]}
           ratio={0.9}
         />
         <Vignette offset={0.1} darkness={1.1} />
