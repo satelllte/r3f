@@ -15,7 +15,7 @@ export function Plane() {
     radius,
     segmentsX: _segmentsX,
     segmentsY: _segmentsY,
-  } = useControls({
+  } = useControls('Plane', {
     shader: {
       value: 1,
       min: 1,

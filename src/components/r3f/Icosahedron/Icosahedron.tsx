@@ -7,29 +7,32 @@ import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
 
 export function Icosahedron() {
-  const {detail, wireframe, pulseFrequency, color1, color2} = useControls({
-    detail: {
-      value: 2,
-      min: 1,
-      max: 20,
-      step: 1,
+  const {detail, wireframe, pulseFrequency, color1, color2} = useControls(
+    'Icosahedron',
+    {
+      detail: {
+        value: 2,
+        min: 1,
+        max: 20,
+        step: 1,
+      },
+      wireframe: {
+        value: false,
+      },
+      pulseFrequency: {
+        value: pulseFrequencyDefault,
+        min: 0.1,
+        max: 4.0,
+        step: 0.05,
+      },
+      color1: {
+        value: color1Default,
+      },
+      color2: {
+        value: color2Default,
+      },
     },
-    wireframe: {
-      value: false,
-    },
-    pulseFrequency: {
-      value: pulseFrequencyDefault,
-      min: 0.1,
-      max: 4.0,
-      step: 0.05,
-    },
-    color1: {
-      value: color1Default,
-    },
-    color2: {
-      value: color2Default,
-    },
-  });
+  );
   const detailRounded = Math.round(detail);
 
   const shaderMaterialRef = useRef<React.ElementRef<'shaderMaterial'>>(null);
