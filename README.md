@@ -1,3 +1,7 @@
+**Archived. Check out [satelllte/space](https://github.com/satelllte/space) instead**
+
+---
+
 # r3f
 
 A playground for [react-three-fiber](https://github.com/pmndrs/react-three-fiber/).
