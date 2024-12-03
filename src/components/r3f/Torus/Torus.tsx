@@ -42,7 +42,7 @@ function SceneBody() {
     wireframe,
     normals,
     normalsColor,
-  } = useControls({
+  } = useControls('Torus', {
     radius: {
       value: 1.0,
       min: 0.5,
